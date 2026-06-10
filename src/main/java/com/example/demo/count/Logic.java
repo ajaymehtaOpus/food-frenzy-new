@@ -7,5 +7,7 @@ public class Logic
 	 double res=price*quantity;
 	 return res;
  }
-	
+	public void sonarTriggerIssue() {
+    System.out.println("temporary sonar trigger");
+}
 }
