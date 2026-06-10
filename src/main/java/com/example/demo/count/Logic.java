@@ -1,3 +1,4 @@
+// sonar remediation trigger 5
 package com.example.demo.count;
 public class Logic
 {
