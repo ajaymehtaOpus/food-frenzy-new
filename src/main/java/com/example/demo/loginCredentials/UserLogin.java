@@ -1,4 +1,4 @@
- package com.example.demo.loginCredentials;
+package com.example.demo.login_credentials;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 

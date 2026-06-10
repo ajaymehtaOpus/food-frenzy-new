@@ -13,7 +13,7 @@ public class Exceptions
 	@ExceptionHandler(value=Exception.class) 
 	public String handler()
 	{
-		System.out.println("Exception Handled....!!!!");
+		org.slf4j.LoggerFactory.getLogger(Exceptions.class).info("Exception Handled....!!!!");
 		return "exception"; 
 	}
 

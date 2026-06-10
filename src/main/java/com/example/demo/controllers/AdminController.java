@@ -32,16 +32,16 @@ public class AdminController {
 	@Autowired
 	private OrderServices orderServices;
 
-	private String email;
-	private User user;
+	private static final String REDIRECT_ADMIN_SERVICES = "redirect:/admin/services";
+	private static final String ORDERS = "orders";
+	private static final String BUY_PRODUCT = "BuyProduct";
+	private static final String PRODUCT = "product";
 	@PostMapping("/adminLogin")
-	public String  getAllData(  @ModelAttribute("adminLogin") AdminLogin login, Model model)
-	{
-		String email=login.getEmail();
+	public String adminLogin( @ModelAttribute("adminLogin") AdminLogin login,Model model)
 		String password=login.getPassword();
 		if(adminServices.validateAdminCredentials(email, password))
 		{
-			return "redirect:/admin/services";
+			return REDIRECT_ADMIN_SERVICES;
 		}
 		else {
 			model.addAttribute("error", "Invalid email or password");
@@ -60,9 +60,9 @@ public class AdminController {
 		{
 			user = this.services.getUserByEmail(email);
 			List<Orders> orders = this.orderServices.getOrdersForUser(user);
-			model.addAttribute("orders", orders);
+			model.addAttribute(ORDERS, orders);
 			model.addAttribute("name", user.getUname());
-			return "BuyProduct";
+			return BUY_PRODUCT;
 		}
 		else
 		{
@@ -79,14 +79,14 @@ public class AdminController {
 		if(product==null)
 		{
 			model.addAttribute("message", "SORRY...!  Product Unavailable");
-			model.addAttribute("product", product);
+			model.addAttribute(PRODUCT, product);
 			List<Orders> orders = this.orderServices.getOrdersForUser(user);
-			model.addAttribute("orders", orders);
-			return "BuyProduct";
+    			model.addAttribute(ORDERS, orders);
+    			return BUY_PRODUCT;
 		}
 		List<Orders> orders = this.orderServices.getOrdersForUser(user);
 		model.addAttribute("orders", orders);
-		model.addAttribute("product", product);
+    		model.addAttribute(PRODUCT, product);
 		return "BuyProduct";
 
 	} 
@@ -114,7 +114,7 @@ public class AdminController {
 	{
 
 		this.adminServices.addAdmin(admin);
-		return "redirect:/admin/services";
+		return REDIRECT_ADMIN_SERVICES;
 
 	}
 	@GetMapping("/updateAdmin/{adminId}")
@@ -128,13 +128,13 @@ public class AdminController {
 	public String updateAdmin(@ModelAttribute Admin admin,@PathVariable("id") int id)
 	{
 		this.adminServices.update(admin, id);
-		return "redirect:/admin/services";
+		return REDIRECT_ADMIN_SERVICES;
 	}
 	@GetMapping("/deleteAdmin/{id}")
 	public String deleteAdmin(@PathVariable("id") int id)
 	{
 		this.adminServices.delete(id);
-		return "redirect:/admin/services";
+		return REDIRECT_ADMIN_SERVICES;
 	}
 	@GetMapping("/addProduct")
 	public String addProduct()
@@ -146,7 +146,7 @@ public class AdminController {
 	public String updateProduct(@PathVariable("productId") int id,Model model)
 	{
 		Product product=this.productServices.getProduct(id);
-		System.out.println(product);
+		logger.info(String.valueOf(product));
 		model.addAttribute("product", product);
 		return "Update_Product";
 	}
@@ -160,7 +160,7 @@ public class AdminController {
 	@GetMapping("/updateUser/{userId}")
 	public String updateUserPage(@PathVariable("userId") int id,Model model)
 	{
-		User user = this.services.getUser(id);
+    		this.services.getUser(id);
 		model.addAttribute("user", user);
 		return "Update_User";
 	}

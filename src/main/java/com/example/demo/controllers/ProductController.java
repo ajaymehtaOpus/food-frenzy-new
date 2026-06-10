@@ -14,34 +14,34 @@ import com.example.demo.entities.Product;
 import com.example.demo.services.ProductServices;
 
 @Controller
-public class ProductController 
-{
-	@Autowired
-	private ProductServices productServices;
+    public class ProductController
+    {
+    	@Autowired
+    	private ProductServices productServices;
 
-	//	AddProduct
-	@PostMapping("/addingProduct")
-	public String addProduct(@ModelAttribute Product product)
-	{
+    	//	AddProduct
+    	@PostMapping("/addingProduct")
+    	public String addProduct(@ModelAttribute Product product)
+    	{
 
-		this.productServices.addProduct(product);
-		return "redirect:/admin/services";
-	}
+    		this.productServices.addProduct(product);
+    		return REDIRECT_ADMIN_SERVICES;
+    	}
 
-	//	UpdateProduct
-	@GetMapping("/updatingProduct/{productId}")
-	public String updateProduct(@ModelAttribute Product product,@PathVariable("productId") int id)
-	{
+    	//	UpdateProduct
+    	@GetMapping("/updatingProduct/{productId}")
+    	public String updateProduct(@ModelAttribute Product product,@PathVariable("productId") int id)
+    	{
 
-		this.productServices.updateproduct(product, id);
-		return "redirect:/admin/services";
-	}
-	//DeleteProduct
-	@GetMapping("/deleteProduct/{productId}")
-	public String delete(@PathVariable("productId") int id)
-	{
-		this.productServices.deleteProduct(id);
-		return "redirect:/admin/services";
-	}
-	
-}
+    		this.productServices.updateproduct(product, id);
+    		return REDIRECT_ADMIN_SERVICES;
+    	}
+   	//DeleteProduct
+   	@GetMapping("/deleteProduct/{productId}")
+   	public String delete(@PathVariable("productId") int id)
+   	{
+   		this.productServices.deleteProduct(id);
+   		return REDIRECT_ADMIN_SERVICES;
+   	}
+
+   }

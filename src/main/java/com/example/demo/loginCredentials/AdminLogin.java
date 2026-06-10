@@ -1,4 +1,4 @@
-package com.example.demo.loginCredentials;
+package com.example.demo.login_credentials;
 
 public class AdminLogin
 {

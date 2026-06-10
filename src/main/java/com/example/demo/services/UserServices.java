@@ -18,19 +18,19 @@ public class UserServices
 
 	public List<User> getAllUser()
 	{
-		List<User> users = (List<User>) this.userRepository.findAll();
+    		return (List<User>) this.userRepository.findAll();
 		return users;
 	}
 
 	public User getUser(int id)
 	{
 		Optional<User> optional = this.userRepository.findById(id);
-		User user = optional.get();
+    		return optional.get();
 		return user;
 	}
 	public User getUserByEmail(String email)
 	{
-	 User user=	this.userRepository.findUserByUemail(email);
+    	 return this.userRepository.findUserByUemail(email);
 	 return user;
 	}
 
