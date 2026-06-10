@@ -8,6 +8,6 @@ class FoodFrenzyApplicationTests {
 
 	@Test
 	void contextLoads() {
-		throw new UnsupportedOperationException("Not implemented yet");
+	}
 
 }

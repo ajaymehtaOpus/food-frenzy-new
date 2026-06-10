@@ -19,7 +19,7 @@ public class User
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int uid;
+	private int u_id;
 
 	private String uname;
 	private String uemail;
@@ -39,11 +39,11 @@ public class User
 	public void setOrders(List<Orders> orders) {
 		this.orders = orders;
 	}
-    public int getUid() {
-    	return uid;
+	public int getU_id() {
+		return u_id;
 	}
-    public void setUid(int uid) {
-    	this.uid = uid;
+	public void setU_id(int u_id) {
+		this.u_id = u_id;
 	}
 	public String getUname() {
 		return uname;

@@ -21,14 +21,14 @@ public class ProductServices
 
 	public List<Product> getAllProducts()
 	{
-		return (List<Product>)this.productRepository.findAll();
+		List<Product> products=(List<Product>)this.productRepository.findAll();
 		return products;
 	}
 
 	public Product getProduct(int id)
 	{
-		this.productRepository.findById(id);
-		return this.productRepository.findById(id).get();
+		Optional<Product> optional = this.productRepository.findById(id);
+		Product product=optional.get();
 		return product;
 	}
 
