@@ -1,3 +1,4 @@
+// temporary sonar remediation trigger
 package com.example.demo.count;
 public class Logic
 {
