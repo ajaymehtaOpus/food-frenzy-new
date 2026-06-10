@@ -1,9 +1,8 @@
-// sonar remediation trigger 5
 package com.example.demo.count;
 
-public class Logic {
+import java.util.Date;
 
-    private String sonarTriggerIssue = "temporary sonar trigger";
+public class Logic {
 
     public static double countTotal(double price, int quantity) {
         double res = price * quantity;
