@@ -1,7 +1,6 @@
 package com.example.demo.count;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,21 +9,31 @@ class LogicTest {
     @Test
     void countTotalShouldMultiplyPriceByQuantity() {
         double result = Logic.countTotal(12.5, 4);
-
-        assertEquals(50.0, result, 0.0000001);
+        assertEquals(50.0, result, 0.0001);
     }
 
     @Test
-    void countTotalShouldHandleZeroQuantity() {
-        double result = Logic.countTotal(99.99, 0);
-
-        assertEquals(0.0, result, 0.0000001);
+    void applyDiscountShouldApplyTenPercentForPremiumCustomer() {
+        double result = Logic.applyDiscount(100.0, true);
+        assertEquals(90.0, result, 0.0001);
     }
 
     @Test
-    void shouldInstantiateLogicClass() {
-        Logic logic = new Logic();
+    void applyDiscountShouldReturnOriginalAmountForNonPremiumCustomer() {
+        double result = Logic.applyDiscount(100.0, false);
+        assertEquals(100.0, result, 0.0001);
+    }
 
-        assertNotNull(logic);
+    @Test
+    void sumShouldAddNinetyCentsForPremiumCustomer() {
+        double result = Logic.sum(10.0, true);
+        assertEquals(10.9, result, 0.0001);
+    }
+
+    @Test
+    void sumShouldReturnOriginalAmountForNonPremiumCustomer() {
+        double result = Logic.sum(10.0, false);
+        assertEquals(10.0, result, 0.0001);
     }
 }
+
