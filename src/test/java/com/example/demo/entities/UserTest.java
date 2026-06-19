@@ -18,7 +18,7 @@ class UserTest {
         assertNull(user.getUpassword());
         assertNull(user.getUname());
         assertNull(user.getUnumber());
-        assertEquals(0, user.getU_id());
+        assertEquals(0, user.getUId());
 
         List<Orders> orders = new ArrayList<>();
         user.setU_id(42);
@@ -28,7 +28,7 @@ class UserTest {
         user.setUnumber(1234567890L);
         user.setOrders(orders);
 
-        assertEquals(42, user.getU_id());
+        assertEquals(42, user.getUId());
         assertEquals("Alice", user.getUname());
         assertEquals("alice@example.com", user.getUemail());
         assertEquals("secret", user.getUpassword());
@@ -44,7 +44,7 @@ class UserTest {
         assertEquals("pwd123", user.getUpassword());
         assertNull(user.getUname());
         assertNull(user.getUnumber());
-        assertEquals(0, user.getU_id());
+        assertEquals(0, user.getUId());
     }
 
     @Test

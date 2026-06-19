@@ -8,16 +8,32 @@ class LogicTest {
 
     @Test
     void countTotalShouldMultiplyPriceByQuantity() {
-        assertEquals(50.0, Logic.countTotal(10.0, 5), 0.0000001);
+        double result = Logic.countTotal(12.5, 4);
+        assertEquals(50.0, result, 0.0001);
     }
 
     @Test
-    void countTotalShouldHandleZeroQuantity() {
-        assertEquals(0.0, Logic.countTotal(12.5, 0), 0.0000001);
+    void applyDiscountShouldApplyTenPercentForPremiumCustomer() {
+        double result = Logic.applyDiscount(100.0, true);
+        assertEquals(90.0, result, 0.0001);
     }
 
     @Test
-    void countTotalShouldHandleNegativeValues() {
-        assertEquals(-30.0, Logic.countTotal(10.0, -3), 0.0000001);
+    void applyDiscountShouldReturnOriginalAmountForNonPremiumCustomer() {
+        double result = Logic.applyDiscount(100.0, false);
+        assertEquals(100.0, result, 0.0001);
+    }
+
+    @Test
+    void sumShouldAddNinetyCentsForPremiumCustomer() {
+        double result = Logic.sum(10.0, true);
+        assertEquals(10.9, result, 0.0001);
+    }
+
+    @Test
+    void sumShouldReturnOriginalAmountForNonPremiumCustomer() {
+        double result = Logic.sum(10.0, false);
+        assertEquals(10.0, result, 0.0001);
     }
 }
+

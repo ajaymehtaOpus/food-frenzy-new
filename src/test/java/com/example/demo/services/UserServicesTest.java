@@ -83,7 +83,7 @@ class UserServicesTest {
 
         userServices.updateUser(user, 42);
 
-        assertEquals(42, user.getU_id());
+        assertEquals(42, user.getUId());
         verify(userRepository, times(1)).save(user);
     }
 
